@@ -13,6 +13,10 @@ export class AddTask implements OnInit {
   public titleTask: string = "";
   public activeButton: boolean = false;
 
+  public isActive: boolean = false;
+  public taskActive!: boolean;
+  public tasks: any[] = ['tarea1', 'tarea2', 'tarea3'];
+
   form!: FormGroup;
 
   constructor(
@@ -41,8 +45,11 @@ export class AddTask implements OnInit {
   */
 
   public sendTaskTitle(): void {
-    if (this.form.valid) {
-      console.log(this.form.value);
+    if (this.form.valid && this.form.get('title')?.value !== '') {
+      this.taskActive = false;
+      console.log(this.form.value.title);
+    } else {
+      this.taskActive = true;
     }
   }
 

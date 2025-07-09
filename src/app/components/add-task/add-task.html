@@ -1,5 +1,9 @@
-<h1>Número de tareas: {{numberTasks}}</h1>
-<span>Título tarea: {{form.get('title')?.value}}</span>
+<h1 [ngClass]="{'r1-5':(numberTasks >= 1 && numberTasks <= 5),'r5-10':(numberTasks > 5 && numberTasks <= 10),'r10-15':(numberTasks > 10 && numberTasks <= 15)}">
+  Número de tareas: {{numberTasks}}
+</h1>
+<span [ngStyle]="{'color': isActive ? 'green' : 'red'}">
+  Título tarea: {{form.get('title')?.value}}
+</span>
 
 <div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)">
   <small *ngIf="form.get('title')?.errors?.['required']">
@@ -9,6 +13,21 @@
     El título de la tarea no puede ser superior a 10 caracteres
   </small>
 </div>
+
+<!--
+<div>
+  <span *ngIf="taskActive">
+    No se puede mandar una tarea sin un título
+  </span>
+</div>
+-->
+
+<h2>Tareas:</h2>
+<div *ngFor="let task of tasks; let i = index">
+  <span>{{i+1}}: {{task}}</span>
+</div>
+
+<hr/>
 
 <form class="container-input" [formGroup]="form" (ngSubmit)="sendTaskTitle()">
   <input type="text"
