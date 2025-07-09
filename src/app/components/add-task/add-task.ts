@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-add-task',
@@ -6,6 +6,10 @@ import { Component } from '@angular/core';
   templateUrl: './add-task.html',
   styleUrl: './add-task.scss'
 })
-export class AddTask {
+export class AddTask implements OnDestroy {
+
+  ngOnDestroy(): void {
+      console.log("AddTask componente has been destroyed");
+  }
 
 }
