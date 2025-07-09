@@ -1,12 +1,20 @@
 <h1>Número de tareas: {{numberTasks}}</h1>
-<span>Título tarea: {{titleTask}}</span>
+<span>Título tarea: {{form.get('title')?.value}}</span>
 
-<div class="container-input">
+<div *ngIf="form.get('title')?.invalid && (form.get('title')?.dirty || form.get('title')?.touched)">
+  <small *ngIf="form.get('title')?.errors?.['required']">
+    El título es requerido
+  </small>
+  <small *ngIf="form.get('title')?.errors?.['maxlength']">
+    El título de la tarea no puede ser superior a 10 caracteres
+  </small>
+</div>
+
+<form class="container-input" [formGroup]="form" (ngSubmit)="sendTaskTitle()">
   <input type="text"
-         (input)="sendTask()"
          placeholder="Ingresar tarea"
-         [(ngModel)]="titleTask"/>
-  <button [disabled]="activeButton">
+         formControlName="title"/>
+  <button type="submit" [disabled]="!form.valid">
     Ingresar tarea
   </button>
-</div>
+</form>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add-task',
@@ -12,10 +13,22 @@ export class AddTask implements OnInit {
   public titleTask: string = "";
   public activeButton: boolean = false;
 
-  ngOnInit(): void {
+  form!: FormGroup;
+
+  constructor(
+    private fb: FormBuilder
+  ) {
 
   }
 
+  ngOnInit(): void {
+    this.form = this.fb.group({
+      title: new FormControl('', [Validators.required, Validators.maxLength(10)])
+    });
+
+  }
+
+  /*
   public sendTask(): void {
     const sizeTitleTask = this.titleTask.split('');
     if (sizeTitleTask.length > 0) {
@@ -23,7 +36,14 @@ export class AddTask implements OnInit {
     } else {
       this.activeButton = true;
     }
-    // console.log(`Tarea enviada con éxito: ${this.titleTask}`);
+    console.log(`Tarea enviada con éxito: ${this.titleTask}`);
+  }
+  */
+
+  public sendTaskTitle(): void {
+    if (this.form.valid) {
+      console.log(this.form.value);
+    }
   }
 
 }
