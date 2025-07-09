@@ -3,10 +3,16 @@ import { BrowserModule, provideClientHydration, withEventReplay } from '@angular
 
 import { AppRoutingModule } from './app-routing-module';
 import { App } from './app';
+import { AddTask } from './components/add-task/add-task';
+import { ListTask } from './components/list-task/list-task';
+import { Layout } from './layout/layout';
 
 @NgModule({
   declarations: [
-    App
+    App,
+    AddTask,
+    ListTask,
+    Layout
   ],
   imports: [
     BrowserModule,
