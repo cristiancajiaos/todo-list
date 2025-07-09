@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-task',
@@ -12,9 +13,7 @@ export class AddTask implements OnInit {
   public titleTask: string = "";
   public activeButton: boolean = false;
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void {}
 
   public sendTask(): void {
     const sizeTitleTask = this.titleTask.split('');
@@ -23,7 +22,12 @@ export class AddTask implements OnInit {
     } else {
       this.activeButton = true;
     }
-    // console.log(`Tarea enviada con éxito: ${this.titleTask}`);
   }
 
+  public sendData(form: NgForm): void {
+    if (form.valid) {
+      console.log(this.titleTask);
+
+    }
+  }
 }
