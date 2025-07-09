@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-add-task',
@@ -6,6 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './add-task.html',
   styleUrl: './add-task.scss'
 })
-export class AddTask {
+export class AddTask implements OnInit {
+
+  constructor(){
+    console.log('AddTask initiated from constructor');
+  }
+
+  ngOnInit(): void {
+    console.log('AddTask initiated from OnInit');
+  }
 
 }

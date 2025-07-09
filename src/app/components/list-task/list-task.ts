@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-list-task',
@@ -6,6 +6,14 @@ import { Component } from '@angular/core';
   templateUrl: './list-task.html',
   styleUrl: './list-task.scss'
 })
-export class ListTask {
+export class ListTask implements OnInit {
+
+  constructor() {
+    console.log('ListTask initiated from constructor');
+  }
+
+  ngOnInit(): void {
+    console.log('ListTask initiated from constructor');
+  }
 
 }
